@@ -1,8 +1,10 @@
 from yandex_maps import (
     get_toponym_long_lat, get_organizations,
     format_point, format_points,
-    get_map_image
+    get_map_image,
+    calculate_distance
 )
+from decimal import Decimal
 
 
 if __name__ == '__main__':
@@ -31,6 +33,8 @@ if __name__ == '__main__':
     print('Адрес:', organization.address)
     print('Название:', organization.name)
     print('Врем работы:', organization.hours)
+    print('Расстояние:', calculate_distance(
+        [Decimal(s) for s in long_lat], organization.coords), 'м')
 
     Image.open(
         get_map_image(
